@@ -80,6 +80,7 @@ function bot(data,socket,questionNum) {
       question = 'Do you want to help me take over the world?';
     }
     else if(input.toLowerCase()==='no'|| input===0){
+<<<<<<< HEAD
 	socket.emit('changeGB','red');
         socket.emit('changeFont','black'); /// we really should look up the inverse of what we said befor.
         answer='Why not, It is my favorite!'
@@ -87,6 +88,13 @@ function bot(data,socket,questionNum) {
         question='Are you against Technology?';
 
         // Here we go back in the question number this can end up in a loop
+=======
+        socket.emit('changeFont','white'); /// we really should look up the inverse of what we said befor.
+        answer=''
+        question='How about now?';
+        waitTime =0;
+        questionNum--; // Here we go back in the question number this can end up in a loop
+>>>>>>> c1b0aa78928c30708053240a86d6151953d8fe34
     }else{
       answer=' It is a simple Yes or No question'
       question='';
