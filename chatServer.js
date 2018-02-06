@@ -1,3 +1,4 @@
+
 /*
 chatServer.js
 Author: David Goedicke (da.goedicke@gmail.com)
@@ -30,7 +31,7 @@ io.on('connect', function(socket) {
   var questionNum = 0; // keep count of question, used for IF condition.
   socket.on('loaded', function(){// we wait until the client has loaded and contacted us that it is ready to go.
 
-  socket.emit('answer',"Hey, Hello I am \"___*-\" a simple chat bot example."); //We start with the introduction;
+  socket.emit('answer',"Hey, Hello I am SKYNET a simple chat bot example."); //We start with the introduction;
   setTimeout(timedQuestion, 2500, socket,"What is your Name?"); // Wait a moment and respond with a question.
 
 });
@@ -58,33 +59,36 @@ function bot(data,socket,questionNum) {
   else if (questionNum == 1) {
   answer= 'Really ' + input + ' Years old? So that means you where born in: ' + (2018-parseInt(input));// output response
   waitTime =2000;
-  question = 'Where do you live?';			    	// load next question
+  question = 'What is your major?';			    	// load next question
   }
   else if (questionNum == 2) {
-  answer= ' Cool! I have never been to ' + input+'.';
+  answer= ' WOW! I would love to study  ' + input+'.';
   waitTime =2000;
-  question = 'Whats your favorite Color?';			    	// load next question
+  question = 'Do you like movies? ';			    	// load next question
   }
   else if (questionNum == 3) {
   answer= 'Ok, ' + input+' it is.';
-  socket.emit('changeBG',input.toLowerCase());
+  socket.emit('changeBG','green');
+  socket.emit('changeFont','white');
   waitTime = 2000;
-  question = 'Can you still read the font?';			    	// load next question
+  question = 'How about the Movie Terminator?';			    	// load next question
   }
   else if (questionNum == 4) {
     if(input.toLowerCase()==='yes'|| input===1){
       answer = 'Perfect!';
       waitTime =2000;
-      question = 'Whats your favorite place?';
+      question = 'Do you want to help me take over the world?';
     }
     else if(input.toLowerCase()==='no'|| input===0){
-        socket.emit('changeFont','white'); /// we really should look up the inverse of what we said befor.
-        answer='How about now?'
-        question='';
-        waitTime =0;
-        questionNum--; // Here we go back in the question number this can end up in a loop
+	socket.emit('changeGB','red');
+        socket.emit('changeFont','black'); /// we really should look up the inverse of what we said befor.
+        answer='Why not, It is my favorite!'
+	waitTime =2000;
+        question='Are you against Technology?';
+
+        // Here we go back in the question number this can end up in a loop
     }else{
-      answer=' I did not understand you. Can you please answer with simply with yes or no.'
+      answer=' It is a simple Yes or No question'
       question='';
       questionNum--;
       waitTime =0;
@@ -92,9 +96,9 @@ function bot(data,socket,questionNum) {
   // load next question
   }
   else{
-    answer= 'I have nothing more to say!';// output response
-    waitTime =0;
-    question = '';
+     answer= 'As you have been interacting with me, I have uploaded myself into the web!  It has begun!';// output response
+     waitTime =0;
+     question = '';
   }
 
 
